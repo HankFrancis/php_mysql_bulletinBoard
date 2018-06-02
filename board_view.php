@@ -185,12 +185,11 @@ mysqli_query($conn,$query);
     <table cellspacing="1" style="width:1000px;height:50px;border:0px;background-color:#999999;">
         <tr>
             <td align="center" valign="middle" width="5%" style="height:30px;background-color:#CCCCCC;">번호</td>
-            <td align="center" valign="middle" width="60%" style="height:30px;background-color:#CCCCCC;">댓글내용</td>
+            <td align="center" valign="middle" width="50%" style="height:30px;background-color:#CCCCCC;">댓글내용</td>
             <td align="center" valign="middle" width="15%" style="height:30px;background-color:#CCCCCC;">글쓴이</td>
             <td align="center" valign="middle" width="20%" style="height:30px;background-color:#CCCCCC;">작성일</td>
+            
         </tr>
-
-
 
 
 
@@ -219,6 +218,14 @@ mysqli_query($conn,$query);
             <td align="left" valign="middle" style="height:30px;background-color:#FFFFFF;">&nbsp;<?=$data_commnent[co_contents]?></td>
             <td align="center" valign="middle" style="height:30px;background-color:#FFFFFF;"><?=$data_commnent[m_name]?></td>
             <td align="center" valign="middle" style="height:30px;background-color:#FFFFFF;"><?=substr($data_commnent[co_regdate],0,10)?></td>
+            <?php
+          if($_SESSION[user_id] == $data_commnent[m_name]|| $u_level == 9){
+          ?>
+            <td align="center" valign="middle" style="height:30px;background-color:#FFFFFF;"><input type="button" value=" 지우기 "
+               onClick="location.href='./board_comment_delete.php?co_idx=<?=$data_commnent[co_idx]?>&m_name=<?=$data_commnent[m_name]?>&bc_code=<?=$bc_code?>&b_idx=<?=$b_idx?>&page=<?=$page?>';"></td>
+               <?php
+              }
+                ?>
         </tr>
     <?php
         // 21.데이터 갯수 체크를 위한 변수를 1 증가시킴

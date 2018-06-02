@@ -9,7 +9,7 @@ include "./inc/config.php";
 <table style="width:1000px;height:50px;border:5px #CCCCCC solid;">
     <tr>
         <td align="center" valign="middle" colspan="3" style="font-zise:15px;font-weight:bold;">
-        PHPer's Heaven 설치형게시판
+        TEAM K 게시판
         </td>
     </tr>
     <?php
