@@ -147,7 +147,10 @@ mysqli_query($conn,$query);
             <input typr="text" name="m_name" <?php if($_SESSION[user_idx]) { echo " value='".$_SESSION[user_name]."' readOnly";}?>  style="width:90px;">
             </td>
             <td align="center" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;"><input type="text" name="co_contents" style="width:780px;"></td>
+            <?php if($_SESSION[user_id] == $data[m_id] || $u_level == 9){ ?>
             <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;"><input type="button" value=" 댓글쓰기 " onClick="write_save();"></td>
+            <?php
+          } ?>
         </tr>
     </table>
     
