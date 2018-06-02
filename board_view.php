@@ -123,6 +123,8 @@ mysqli_query($conn,$query);
 
 
 <br/>
+
+    <?php if( $_SESSION[user_id] ){ ?>
     <table style="width:1000px;height:50px;border:5px #CCCCCC solid;">
         <tr>
             <td align="center" valign="middle" style="font-zise:15px;font-weight:bold;">댓글작성</td>
@@ -144,16 +146,18 @@ mysqli_query($conn,$query);
         </tr>
         <tr>
             <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;">
-            <input typr="text" name="m_name" <?php if($_SESSION[user_idx]) { echo " value='".$_SESSION[user_name]."' readOnly";}?>  style="width:90px;">
+            <?=$_SESSION[user_name]?>
             </td>
             <td align="center" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;"><input type="text" name="co_contents" style="width:780px;"></td>
-            <?php if($_SESSION[user_id] == $data[m_id] || $u_level == 9){ ?>
+            
             <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;"><input type="button" value=" 댓글쓰기 " onClick="write_save();"></td>
-            <?php
-          } ?>
+           
+          
         </tr>
     </table>
-    
+
+
+     <?php } ?>
     <script>
 
 
@@ -190,7 +194,8 @@ mysqli_query($conn,$query);
             <td align="center" valign="middle" width="5%" style="height:30px;background-color:#CCCCCC;">번호</td>
             <td align="center" valign="middle" width="50%" style="height:30px;background-color:#CCCCCC;">댓글내용</td>
             <td align="center" valign="middle" width="15%" style="height:30px;background-color:#CCCCCC;">글쓴이</td>
-            <td align="center" valign="middle" width="20%" style="height:30px;background-color:#CCCCCC;">작성일</td>
+            <td align="center" valign="middle" width="30%" style="height:30px;background-color:#CCCCCC;">작성일</td>
+            <td align="center" valign="middle" width="0%" style="height:30px;background-color:#CCCCCC;"></td>
             
         </tr>
 

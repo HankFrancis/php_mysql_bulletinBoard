@@ -21,8 +21,7 @@ $paging_str = "";
 $sql = "select count(*) as cnt from bd__member where 1";
 $total_count = sql_total($sql);
 
-echo "$total_count";
-echo "testing";
+
 
 // 4. 페이지 출력 내용 만들기
 $paging_str = paging($page, $page_row, $page_scale, $total_count);

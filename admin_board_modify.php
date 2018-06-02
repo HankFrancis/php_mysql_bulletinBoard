@@ -12,7 +12,7 @@ $conn = mysqli_connect($host, $user, $pw, $dbname);
 
 $bc_idx = $_GET['bc_idx'];
 
-echo "$bc_idx";
+
 
 // 2. 게시판 설정 데이터 불러오기
 $sql = "select * from bd__board_config where bc_idx = $bc_idx ";
@@ -28,9 +28,6 @@ if(!$data[bc_idx]){
     alert("없는 게시판입니다.");
 }
 
-echo "testing";
-
-echo "testing2";
 // 3. 입력 HTML 출력
 ?>
 

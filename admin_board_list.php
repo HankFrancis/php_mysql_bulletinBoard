@@ -36,7 +36,6 @@ $total_count = $data_total[cnt];
 
 
 
-echo "$total_count";
 
 // 4. 페이지 출력 내용 만들기
 $paging_str = paging($page, $page_row, $page_scale, $total_count);
@@ -44,8 +43,7 @@ $paging_str = paging($page, $page_row, $page_scale, $total_count);
 // 5. 시작 열을 구함
 $from_record = ($page - 1) * $page_row;
 
-echo "$paging_str";
-echo "testing";
+
 
 
 // 6. 글목록 구하기
@@ -63,12 +61,7 @@ $query = "select * from bd__board_config where 1 order by bc_idx desc limit $fro
 $data = $sql_list;
 $zero = 0;
 
-echo "$data";
 
-echo "testing2";
-
-
-echo "$total_count";
 ?>
 
 <br/>

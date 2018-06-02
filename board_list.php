@@ -32,7 +32,7 @@ if($_SESSION[user_level]){
 }
 
 
-echo "testing";
+
 
 
 
@@ -67,11 +67,7 @@ $result = mysqli_query($conn,$query);
 // 14.데이터 갯수 체크를 위한 변수 설정
 $i = 0;
 
-echo "testing2";
 
-
-
-echo "testing 3";
 
 ?>
 
@@ -139,7 +135,7 @@ if($i == 0){
 
 
     <tr>
-        <td align="center" valign="middle" colspan="4" style="height:50px;background-color:#FFFFFF;">게시글이 하나도 없습니다.</td>
+        <td align="center" valign="middle" colspan="5" style="height:50px;background-color:#FFFFFF;">게시글이 하나도 없습니다.</td>
     </tr>
 
 <?php
