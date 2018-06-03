@@ -18,6 +18,12 @@ if(!$data[m_idx]){
 
 $m_idx = $_GET[m_idx];
 
+
+
+mysqli_autocommit($conn,FALSE);
+
+try{
+
 // 4. 회원 삭제
 $sql = "delete from bd__member where m_idx = '".$m_idx."'";
 mysqli_query($conn,$sql);
@@ -36,10 +42,23 @@ for($i=0;$i<count($data1);$i++){
     mysqli_query($conn,$sql);
 }
 
+
 // 8. 코멘트 삭제
 $sql = "delete from bd__comment where m_id = '".$data1[m_id]."'";
 mysqli_query($conn,$sql);
 
+
+mysqli_commit($conn);
+
+
 // 9. 회원목록 페이지로 보내기
 alert("회원이 삭제 되었습니다.", "./admin_member_list.php");
+
+
+}
+
+catch(Exception $e){
+	mysqli_rollback($conn);
+	alert("RollBack", "./admin_member_list.php");
+}
 ?>

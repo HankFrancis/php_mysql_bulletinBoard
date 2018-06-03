@@ -3,8 +3,8 @@
 include ("./head.php");
 
 
-$host = 'localhost';
-$user = 'root';
+    $host = 'localhost';
+    $user = 'root';
 $dbname = 'hank_board';
 $pw = 'threka4880';
 $conn = mysqli_connect($host, $user,$pw, $dbname);
@@ -59,9 +59,6 @@ if(!$data[b_idx]){
 
 
 
-$query = "update bd__board set b_cnt = b_cnt + 1 where b_idx=$b_idx ";
-mysqli_query($conn,$query);
-
 ?>
 
 
@@ -90,7 +87,7 @@ mysqli_query($conn,$query);
         <td align="center" valign="middle" style="width:200px;height:50px;background-color:#CCCCCC;">작성자명</td>
         <td align="left" valign="middle" style="width:800px;height:50px;"><?=$data[m_name]?></td>
     </tr>
-    
+
     <tr>
         <td align="center" valign="middle" style="width:200px;height:200px;background-color:#CCCCCC;">글내용</td>
         <td align="left" valign="middle" style="width:800px;height:200px;"><?=nl2Br($data[b_contents])?></td>
@@ -101,8 +98,8 @@ mysqli_query($conn,$query);
 <table style="width:1000px;height:50px;">
     <tr>
         <td align="center" valign="middle"><input type="button" value=" 목록보기 " onClick="location.href='./board_list.php?bc_code=<?=$bc_code?>&page=<?=$page?>';"></td>
-    
-    
+
+
     <?php
     if($_SESSION[user_id] == $data[m_id] || $u_level == 9)
     {?>
@@ -111,7 +108,7 @@ mysqli_query($conn,$query);
     }?>
 
 
-    <?php 
+    <?php
     if($_SESSION[user_id] == $data[m_id] || $u_level == 9)
     {?>
         <td align="center" valign="middle"><input type="button" value=" 글삭제 " onClick="location.href='./board_delete.php?bc_code=<?=$bc_code?>&b_idx=<?=$b_idx?>&page=<?=$page?>';"></td>
@@ -124,21 +121,23 @@ mysqli_query($conn,$query);
 
 <br/>
 
-    <?php if( $_SESSION[user_id] ){ ?>
+<?php if($_SESSION[user_id]){ ?>
+
     <table style="width:1000px;height:50px;border:5px #CCCCCC solid;">
         <tr>
             <td align="center" valign="middle" style="font-zise:15px;font-weight:bold;">댓글작성</td>
         </tr>
     </table>
 <br/>
-    
+
     <form name="bWriteForm" method="post" enctype="multipart/form-data" action="./board_comment_save.php" style="margin:0px;">
-    
+
     <input type="hidden" name="bc_code" value="<?=$bc_code?>">
     <input type="hidden" name="b_idx" value="<?=$b_idx?>">
     <input type="hidden" name="page" value="<?=$page?>">
-    <table cellspacing="1" style="width:1000px;height:50px;border:0px;background-color:#999999;">
     
+    <table cellspacing="1" style="width:1000px;height:50px;border:0px;background-color:#999999;">
+
         <tr>
             <td align="center" valign="middle" width="100" style="height:30px;background-color:#CCCCCC;">이름</td>
             <td align="center" valign="middle" width="800" style="height:30px;background-color:#CCCCCC;">댓글내용</td>
@@ -146,22 +145,20 @@ mysqli_query($conn,$query);
         </tr>
         <tr>
             <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;">
-            <?=$_SESSION[user_name]?>
-            </td>
+            <input type="text" name="m_name" <?php if($_SESSION[user_idx]) { echo " value='".$_SESSION[user_name]."' readOnly";}?>  style="width:90px;"></td>
             <td align="center" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;"><input type="text" name="co_contents" style="width:780px;"></td>
-            
-            <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;"><input type="button" value=" 댓글쓰기 " onClick="write_save();"></td>
-           
-          
+
+
+            <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;"><input type="button" value="댓글쓰기" onClick="write_save();"></td>
+
+
         </tr>
+
     </table>
+    <?php
+  } ?>
 
-
-     <?php } ?>
     <script>
-
-
-
     function write_save()
     {
         var f = document.bWriteForm;
@@ -192,12 +189,13 @@ mysqli_query($conn,$query);
     <table cellspacing="1" style="width:1000px;height:50px;border:0px;background-color:#999999;">
         <tr>
             <td align="center" valign="middle" width="5%" style="height:30px;background-color:#CCCCCC;">번호</td>
-            <td align="center" valign="middle" width="50%" style="height:30px;background-color:#CCCCCC;">댓글내용</td>
+            <td align="center" valign="middle" width="60%" style="height:30px;background-color:#CCCCCC;">댓글내용</td>
             <td align="center" valign="middle" width="15%" style="height:30px;background-color:#CCCCCC;">글쓴이</td>
-            <td align="center" valign="middle" width="30%" style="height:30px;background-color:#CCCCCC;">작성일</td>
+            <td align="center" valign="middle" width="20%" style="height:30px;background-color:#CCCCCC;">작성일</td>
             <td align="center" valign="middle" width="0%" style="height:30px;background-color:#CCCCCC;"></td>
-            
         </tr>
+
+
 
 
 
@@ -226,7 +224,10 @@ mysqli_query($conn,$query);
             <td align="left" valign="middle" style="height:30px;background-color:#FFFFFF;">&nbsp;<?=$data_commnent[co_contents]?></td>
             <td align="center" valign="middle" style="height:30px;background-color:#FFFFFF;"><?=$data_commnent[m_name]?></td>
             <td align="center" valign="middle" style="height:30px;background-color:#FFFFFF;"><?=substr($data_commnent[co_regdate],0,10)?></td>
-            <?php
+
+
+
+          <?php
           if($_SESSION[user_id] == $data_commnent[m_name]|| $u_level == 9){
           ?>
             <td align="center" valign="middle" style="height:30px;background-color:#FFFFFF;"><input type="button" value=" 지우기 "
@@ -241,11 +242,11 @@ mysqli_query($conn,$query);
     }
 
 
-    // 22. 댓글데이터가 하나도 없으면 
+    // 22. 댓글데이터가 하나도 없으면
     if($i == 0){
     ?>
         <tr>
-            <td align="center" valign="middle" colspan="4" style="height:50px;background-color:#FFFFFF;">댓글이 하나도 없습니다.</td>
+            <td align="center" valign="middle" colspan="5" style="height:50px;background-color:#FFFFFF;">댓글이 하나도 없습니다.</td>
         </tr>
     <?php
     }

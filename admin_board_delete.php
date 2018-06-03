@@ -22,6 +22,12 @@ if(!$data[bc_idx]){
 }
 
 
+
+mysqli_autocommit($conn,FALSE);
+
+
+try{
+
 // 4. 게시판 삭제
 $sql = "delete from bd__board_config where bc_idx = $bc_idx";
 mysqli_query($conn,$sql);
@@ -60,9 +66,20 @@ while($data = mysqli_fetch_array($result)){
 
 
 
+mysqli_commit($conn);
 
 // 8. 게시판목록 페이지로 보내기
 alert("게시판이 삭제 되었습니다.", "./admin_board_list.php");
+
+
+}
+
+catch(Exception $e){
+	mysqli_rollback($conn);
+	alert("RollBack", "./admin_board_list.php");
+}
+
+
 ?>
 
 

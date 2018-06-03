@@ -27,9 +27,11 @@ include "./inc/config.php";
         else{?>
         <td align="center" valign="middle" style="font-size:12px;"><a href="./index.php">홈</a></td>
         <?php  }?>
-        <td align="center" valign="middle" style="font-size:12px;"><a href="./member_modify.php">정보수정</a></td>
+        <td align="center" valign="middle" style="font-size:12px;"><a href="./member_modify.php">정보수정&포인트보내기</a></td>
         <td align="center" valign="middle" style="font-size:12px;"><a href="./logout.php">로그아웃</a></td>
     </tr>
+
+ 
     <?php  }
 
 
@@ -40,6 +42,8 @@ include "./inc/config.php";
         <td align="center" valign="middle" style="font-size:12px;"><a href="./login.php">로그인</a></td>
     </tr>
     <?php  }?>
+
+
 </table>
 <br>
 <table style="width:1000px;height:30px;border:5px #CCCCCC solid;">

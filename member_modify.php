@@ -77,4 +77,44 @@ function member_save()
     f.submit();
 
 }
+
+
 </script>
+
+
+</br>
+</br>
+
+<form name="bWriteForm" method="post" action="./point_save.php" style="margin:0px;">
+<table style="width:1000px;height:50px;border:0px;">
+   <tr>
+    
+    <td align="center" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;"><input type="hidden" name="send_user" value= <?=$_SESSION[user_id]?> style="width:0px;"></td>
+    <td align="right" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;">유저 ID</td>
+    <td align="center" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;"><input type="text" name="get_user" style="width:200px;"></td>
+    <td align="right" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;">보낼 포인트</td>
+    <td align="center" valign="middle" width="800" style="height:30px;background-color:#FFFFFF;"><input type="number" name="point" min ="0" style="width:200px;"></td>
+    
+    <td align="center" valign="middle" width="100" style="height:30px;background-color:#FFFFFF;"><input type="button" value="보내기" onClick="point_save();"></td>
+    </tr>
+
+<script>
+       function point_save()
+    {
+        var f = document.bWriteForm;
+
+        if(f.point.value == ""){
+            alert("포인트를 입력해 주세요.");
+            return false;
+        }
+
+        if(f.get_user.value == ""){
+            alert("받을 사람을 입력해 주세요.");
+            return false;
+        }
+
+        f.submit();
+    }
+</script>
+</table>
+</form>
