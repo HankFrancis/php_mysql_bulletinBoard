@@ -1,5 +1,5 @@
 <?php
-// 1. 공통 인클루드 파일
+//  공통 인클루드 파일
 include ("./head.php");
 
 
@@ -9,17 +9,17 @@ $dbname = 'hank_board';
 $pw = 'threka4880';
 $conn = mysqli_connect($host, $user,$pw, $dbname);
 
-// 2. 게시판 코드 검사
+//  게시판 코드 검사
 $bc_code = $_GET[bc_code];
 if($bc_code){
-    // 3. 게시판 코드가 있으면 게시판 설정 불러오기
+    // 게시판 코드가 있으면 게시판 설정 불러오기
     $b_config_sql = "select * from ".$_cfg['config_table']." where bc_code = '".$bc_code."'";
     $board_config = sql_fetch($b_config_sql);
 }else{
     alert("게시판 코드가 없습니다.");
 }
 
-// 4. 존재하는 게시판인지 확인
+//  존재하는 게시판인지 확인
 if(!$board_config[bc_idx]){
     alert("존재 하지 않는 게시판입니다.");
 }
@@ -31,7 +31,7 @@ if($_SESSION[user_level]){
     $u_level = 0;
 }
 
-// 8. 페이징 변수 설정
+//  페이징 변수 설정
 if($_GET[page] && $_GET[page] > 0){
     // 현재 페이지 값이 존재하고 0 보다 크면 그대로 사용
     $page = $_GET[page];
@@ -40,7 +40,7 @@ if($_GET[page] && $_GET[page] > 0){
     $page = 1;
 }
 
-// 9. 글정보 가져오기
+//  글정보 가져오기
 $b_idx = $_GET[b_idx];
 $sql = "select * from ".$_cfg['board_table']." where bc_code = '".$bc_code."' and b_idx = '".$b_idx."'";
 $data = sql_fetch($sql);
@@ -50,11 +50,6 @@ if(!$data[b_idx]){
     alert("존재 하지 않는 글입니다.");
 }
 
-/*if($data[b_is_secret] && !$_SESSION["b_pass_".$b_idx] && $_SESSION[user_id] != $data[m_id] && $u_level != 9){
-    alert("비밀번호를 입력하여 주세요.");
-}*/
-
-// 11.글내용 출력
 
 
 
@@ -202,21 +197,21 @@ if(!$data[b_idx]){
 
     <?php
 
-    // 16. 전체 댓글 갯수 알아내기
+    // 전체 댓글 갯수 알아내기
     $sql = "select count(*) as cnt from ".$_cfg['comment_table']." where b_idx = '".$b_idx."' ";
     $total_count = sql_total($sql);
 
 
-    // 17. 댓글목록 구하기
+    //  댓글목록 구하기
     $query = "select * from ".$_cfg['comment_table']." where b_idx = '".$b_idx."' order by co_idx desc ";
     $result = mysqli_query($conn, $query);
 
-    // 18.데이터 갯수 체크를 위한 변수 설정
+    // 데이터 갯수 체크를 위한 변수 설정
     $i = 0;
 
 
 
-    // 19.데이터가 있을 동안 반복해서 값을 한 줄씩 읽기
+    // 데이터가 있을 동안 반복해서 값을 한 줄씩 읽기
     while($data_commnent = mysqli_fetch_array($result)){
     ?>
         <tr>
@@ -237,12 +232,12 @@ if(!$data[b_idx]){
                 ?>
         </tr>
     <?php
-        // 21.데이터 갯수 체크를 위한 변수를 1 증가시킴
+        // 데이터 갯수 체크를 위한 변수를 1 증가시킴
         $i++;
     }
 
 
-    // 22. 댓글데이터가 하나도 없으면
+    //  댓글데이터가 하나도 없으면
     if($i == 0){
     ?>
         <tr>

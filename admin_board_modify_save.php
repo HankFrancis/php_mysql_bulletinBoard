@@ -1,8 +1,8 @@
 <?php
-// 1. 공통 인클루드 파일
+// 공통 인클루드 파일
 include "./admin_head.php";
 
-// 2. 게시판 존재여부 검사
+// 게시판 존재여부 검사
 $sql = "select * from bd__board_config where bc_idx = '".$_POST[bc_idx]."'";
 
 
@@ -22,7 +22,7 @@ if(!$data[bc_idx]){
     alert("없는 게시판입니다.");
 }
 
-// 3. 넘어온 변수 검사
+// 넘어온 변수 검사
 if(trim($_POST[bc_code]) == ""){
     alert("게시판코드를 입력해 주세요.");
 }
@@ -47,7 +47,7 @@ $bc_idx = $_POST[bc_idx];
 $dir = "./data/board_config";
 
 
-// 7. 게시판 저장
+// 게시판 저장
 $sql = "update bd__board_config set
         bc_code = '".trim($_POST[bc_code])."', 
         bc_name = '".trim($_POST[bc_name])."', 
@@ -65,6 +65,6 @@ if($data[bc_code] != trim($_POST[bc_code])){
     mysqli_query($conn,$sql);
 }
 
-// 9. 게시판목록 페이지로 보내기
+// 게시판목록 페이지로 보내기
 alert("게시판이 수정 되었습니다.", "./admin_board_list.php");
 ?>

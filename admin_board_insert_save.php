@@ -1,8 +1,8 @@
 <?php
-// 1. 공통 인클루드 파일
+// 공통 인클루드 파일
 include "./admin_head.php";
 
-// 2. 넘어온 변수 검사
+// 넘어온 변수 검사
 if(trim($_POST[bc_code]) == ""){
     alert("게시판코드를 입력해 주세요.");
 }
@@ -36,7 +36,7 @@ if(trim($_POST[bc_name]) == ""){
 
 
 
-// 3. 파일 저장 디렉토리 검사 후 없으면 생성
+// 파일 저장 디렉토리 검사 후 없으면 생성
 $dir = "./data/board_config";
 if(!is_dir($dir)){
     @mkdir($dir, 0707);
@@ -44,7 +44,7 @@ if(!is_dir($dir)){
 }
 
 
-// 5. 게시판 저장
+// 게시판 저장
 $sql = "insert into bd__board_config set
         bc_code = '".trim($_POST[bc_code])."', 
         bc_name = '".trim($_POST[bc_name])."', 
@@ -53,11 +53,11 @@ $sql = "insert into bd__board_config set
 mysqli_query($conn,$sql);
 
 
-// 6. 저장된 게시판번호 찾기
+// 저장된 게시판번호 찾기
 $bc_idx = mysqli_insert_id();
 
 
 
-// 8. 게시판목록 페이지로 보내기
+// 게시판목록 페이지로 보내기
 alert("게시판이 생성 되었습니다.", "./admin_board_list.php");
 ?>

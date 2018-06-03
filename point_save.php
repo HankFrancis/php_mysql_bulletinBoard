@@ -69,6 +69,6 @@ if ($send_query and $get_query) {
 
 
 
-//alert("포인트가 보내졌습니다 ", "./index.php");
+alert("포인트가 보내졌습니다 ", "./index.php");
 
 ?>

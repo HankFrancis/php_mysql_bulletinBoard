@@ -1,5 +1,5 @@
 <?php
-// 1. 공통 인클루드 파일
+// 공통 인클루드 파일
 include ("./head.php");
 
 $host = 'localhost';
@@ -9,7 +9,7 @@ $pw = 'threka4880';
 $conn = mysqli_connect($host, $user,$pw, $dbname);
 
 
-// 2. 로그인한 회원은 뒤로 보내기
+//  로그인한 회원은 뒤로 보내기
 if($_SESSION[user_id]){
     ?>
     <script>
@@ -19,7 +19,7 @@ if($_SESSION[user_id]){
     <?php
 }
 
-// 3. 넘어온 변수 검사
+// 넘어온 변수 검사
 if(trim($_POST[m_id]) == ""){
     ?>
     <script>
@@ -60,12 +60,12 @@ if($_POST[m_pass] != $_POST[m_pass2]){
     exit;
 }
 
-// 4. 같은 아이디가 있는지 검사
+// 같은 아이디가 있는지 검사
 $chk_sql = "select * from bd__member where m_id = '".trim($_POST[m_id])."'";
 $chk_result = mysqli_query($conn,$chk_sql);
 $chk_data = mysqli_fetch_array($chk_result);
 
-// 5. 가입된 아이디가 있으면 되돌리기
+//  가입된 아이디가 있으면 되돌리기
 if($chk_data[m_idx]){
     ?>
     <script>
@@ -76,11 +76,11 @@ if($chk_data[m_idx]){
     exit;
 }
 
-// 6. 회원정보 적기
+//  회원정보 적기
 $sql = "insert into bd__member (m_id, m_name, m_pass, m_level) values ('".trim($_POST[m_id])."', '".trim($_POST[m_name])."', '".$_POST[m_pass]."', 1)";
 mysqli_query($conn,$sql);
 
-// 7. 로그인 페이지로 보내기
+//  로그인 페이지로 보내기
 ?>
 <script>
 alert("회원가입이 완료 되었습니다.");

@@ -1,5 +1,5 @@
 <?php
-// 1. 공통 인클루드 파일
+//  공통 인클루드 파일
 include ("./head.php");
 
 
@@ -9,22 +9,22 @@ $dbname = 'hank_board';
 $pw = 'threka4880';
 $conn = mysqli_connect($host, $user,$pw, $dbname);
 
-// 2. 게시판 코드 검사
+// 게시판 코드 검사
 $bc_code = $_GET[bc_code];
 if($bc_code){
-    // 3. 게시판 코드가 있으면 게시판 설정 불러오기
+    // 게시판 코드가 있으면 게시판 설정 불러오기
     $b_config_sql = "select * from ".$_cfg['config_table']." where bc_code = '".$bc_code."'";
     $board_config = sql_fetch($b_config_sql);
 }else{
     alert("게시판 코드가 없습니다.");
 }
 
-// 4. 존재하는 게시판인지 확인
+//  존재하는 게시판인지 확인
 if(!$board_config[bc_idx]){
     alert("존재 하지 않는 게시판입니다.");
 }
 
-// 5. 게시판 권한 체크
+//  게시판 권한 체크
 if($_SESSION[user_level]){
     $u_level = $_SESSION[user_level];
 }else{
@@ -50,21 +50,21 @@ $page_scale = 10;
 // 페이징을 출력할 변수 초기화
 $paging_str = "";
 
-// 10. 전체 글 갯수 알아내기
+//  전체 글 갯수 알아내기
 $sql = "select count(*) as cnt from ".$_cfg['board_table']." where bc_code = '".$bc_code."' ";
 $total_count = sql_total($sql);
 
-// 11. 페이지 출력 내용 만들기
+//  페이지 출력 내용 만들기
 $paging_str = paging($page, $page_row, $page_scale, $total_count, $bc_code);
 
-// 12. 시작 열을 구함
+// 시작 열을 구함
 $from_record = ($page - 1) * $page_row;
 
-// 13. 글목록 구하기
+// 글목록 구하기
 $query = "select * from ".$_cfg['board_table']." where bc_code = '".$bc_code."' order by b_idx desc limit $from_record, $page_row";
 $result = mysqli_query($conn,$query);
 
-// 14.데이터 갯수 체크를 위한 변수 설정
+// 데이터 갯수 체크를 위한 변수 설정
 $i = 0;
 
 
@@ -94,10 +94,10 @@ $i = 0;
 
 <?php
 
-// 9. 페이지 변수 설정
+//  페이지 변수 설정
 
 
-// 15.데이터가 있을 동안 반복해서 값을 한 줄씩 읽기
+// 데이터가 있을 동안 반복해서 값을 한 줄씩 읽기
 while($data = mysqli_fetch_array($result)){
 
           
@@ -124,11 +124,11 @@ while($data = mysqli_fetch_array($result)){
 
 
 <?php
-    // 17.데이터 갯수 체크를 위한 변수를 1 증가시킴
+    // 데이터 갯수 체크를 위한 변수를 1 증가시킴
     $i++;
 }
 
-// 18.데이터가 하나도 없으면 
+// 데이터가 하나도 없으면 
 if($i == 0){
 ?>
 

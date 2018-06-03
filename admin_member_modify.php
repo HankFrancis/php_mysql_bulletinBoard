@@ -1,14 +1,14 @@
 <?php
-// 1. 공통 인클루드 파일
+// 공통 인클루드 파일
 include "./admin_head.php";
 
-// 2. 회원 설정 데이터 불러오기
+//  회원 설정 데이터 불러오기
 $sql = "select * from bd__member where m_idx = '".$_GET['m_idx']."'";
 $data = sql_fetch($sql);
 if(!$data[m_idx]){
     alert("없는 회원입니다.");
 }
-// 3. 입력 HTML 출력
+//  입력 HTML 출력
 ?>
 <br/>
 <table style="width:1000px;height:30px;border:5px #CCCCCC solid;">
@@ -45,27 +45,27 @@ if(!$data[m_idx]){
     </tr>
     
     </tr>
-    <!-- 4. 수정 버튼 클릭시 입력필드 검사 함수 write_save 실행 -->
+    
     <tr>
         <td align="center" valign="middle" colspan="2"><input type="button" value=" 회원수정 " onClick="write_save();">&nbsp;&nbsp;&nbsp;<input type="button" value=" 삭제 " onClick="location.replace('./admin_member_delete.php?m_idx=<?=$data[m_idx]?>')">&nbsp;&nbsp;&nbsp;<input type="button" value=" 뒤로가기 " onClick="history.back();"></td>
     </tr>
 </table>
 </form>
 <script>
-// 5.입력필드 검사함수
+// 입력필드 검사함수
 function write_save()
 {
-    // 6.form 을 f 에 지정
+    // form 을 f 에 지정
     var f = document.bWriteForm;
 
-    // 7.입력폼 검사
+    // 입력폼 검사
 
     if(f.m_name.value == ""){
         alert("회원이름을 입력해 주세요.");
         return false;
     }
 
-    // 8.검사가 성공이면 form 을 submit 한다
+    // 검사가 성공이면 form 을 submit 한다
     f.submit();
 
 }

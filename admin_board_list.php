@@ -1,10 +1,10 @@
 
 
 <?php
-// 1. 공통 인클루드 파일
+// 공통 인클루드 파일
 include "./admin_head.php";
 
-// 2. 페이지 변수 설정
+// 페이지 변수 설정
 if($_GET[page] && $_GET[page] > 0){
     // 현재 페이지 값이 존재하고 0 보다 크면 그대로 사용
     $page = $_GET[page];
@@ -19,7 +19,7 @@ $page_scale = 10;
 // 페이징을 출력할 변수 초기화
 $paging_str = "";
 
-// 3. 전체 게시판 갯수 알아내기
+// 전체 게시판 갯수 알아내기
 
 
 $host = 'localhost';
@@ -37,16 +37,16 @@ $total_count = $data_total[cnt];
 
 
 
-// 4. 페이지 출력 내용 만들기
+// 페이지 출력 내용 만들기
 $paging_str = paging($page, $page_row, $page_scale, $total_count);
 
-// 5. 시작 열을 구함
+// 시작 열을 구함
 $from_record = ($page - 1) * $page_row;
 
 
 
 
-// 6. 글목록 구하기
+// 글목록 구하기
 $query = "select * from bd__board_config where 1 order by bc_idx desc limit $from_record, $page_row ";
 
 

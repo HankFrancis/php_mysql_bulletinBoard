@@ -45,12 +45,6 @@ if($data[m_id] != $_SESSION[user_id] && $u_level != 9){
     alert("본인의 글이 아닙니다.");
 }
 
-// 유저 정보에서 게시글수 -1 줄여주기
-/*
-$sql = "update bd__member set m_post = m_post -1 where m_id = '".$data[m_id]."' ";
-mysqli_query($conn,$sql);*/
-
-
 
 
 mysqli_autocommit($conn,FALSE);
@@ -75,12 +69,12 @@ $data = sql_fetch($sql);
 
 
 
-// 7. 글 삭제하기
+// 글 삭제하기
 $sql_delete = "delete from ".$_cfg['board_table']." where bc_code = '".$bc_code."' and b_idx = '".$data[b_idx]."' ";
 mysqli_query($conn,$sql_delete);
 
 mysqli_commit($conn);
-// 8. 글목록 페이지로 보내기
+//  글목록 페이지로 보내기
 alert("글이 삭제 되었습니다.", "./board_list.php?bc_code=".$bc_code."&page=".$_GET[page]);
 
 
